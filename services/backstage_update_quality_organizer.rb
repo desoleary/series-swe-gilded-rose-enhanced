@@ -1,4 +1,4 @@
-File.join(File.dirname(__FILE__), 'update_quality_helper')
+require File.join(File.dirname(__FILE__), 'application_organizer')
 
 class BackstageUpdateQualityOrganizer < ApplicationOrganizer
   def self.call(context)

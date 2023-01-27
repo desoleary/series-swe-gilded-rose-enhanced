@@ -4,75 +4,13 @@
 
 ```shell
 $ bundle
-$ rspec gilded_rose_spec.rb
+$ rspec gilded_rose_enhanced_spec.rb
 ```
 
 ## Additional Recommended Enhancements
-- Make GildedRose essentially a enumerable/collection class
 - Possible enhancements
   - Handle case when given quality > 50 for non legendary items to set value to 50
-  - Extract logic into individual action classes organized via organizer service class.
-    - Pros included:
-      - Improve testability and readability
-      - Remove the insane amount of `nested if statements`
-      - Adding extra functionality is as easy as adding another action
-    - Introduce a service class that acts on single item classes E.g. `UpdateQualityOrganizer`
-      - Create `DefaultUpdateQualityAction` that will be used to adjust the quality of an item based on the spec for normal items and returns adjusted item
-      - Create `DefaultUpdateSellInAction` that will be used to adjust the `sellIn` of an item based on the spec for normal items and returns adjusted item
-      - Create `NullUpdateSellInAction` that will not change the `sellIn` value
-      - Create `LegendaryUpdateQualityAction` that will set the quality to 80
-      - Create `AgedBrieQualityAction` that will increase instead of decrease quality
-      - Create `BackstagePassesQualityAction` that will increase instead of decrease quality by 1X, 2X or 3X and when sellIn value is 0 set quality to `0`
-      - Create `ConjuredQualityAction` that will double the amount to decrease per day
-    - Inside `UpdateQualityOrganizer` Add logic to handle the different types by calling the appropriate actions
-      - IF Legendary Item THEN UpdateQualityOrganizer => LegendaryUpdateQualityAction => NullUpdateSellInAction
-      - IF AgedBrie Item THEN UpdateQualityOrganizer => AgedBrieQualityAction => DefaultUpdateSellInAction
-      - IF Backstage Pass Item THEN UpdateQualityOrganizer => BackstagePassesQualityAction => DefaultUpdateSellInAction
-      - IF Conjured Item THEN UpdateQualityOrganizer => ConjuredQualityAction => DefaultUpdateSellInAction
-    - refactor specs into shared examples where possible
-```ruby
-  Default
-```
-- Simplify nested if statements 
-
-```ruby
-
-
-
-
-
-
-class DefaultItem < SimpleDelegator
-  MIN_QUALITY = 0.freeze
-  MAX_QUALITY = 50.freeze
   
-  def initialize(item)
-    super(item)
-  end
-  
-  def quality=(quality)
-    allowed_quality = [[quality, MIN_QUALITY].min, MAX_QUALITY].max
-    @quality = allowed_quality
-  end
-end
-```
-
-```ruby
-class LegendaryItem < DefaultItem
-  MIN_QUALITY = 80.freeze
-  MAX_QUALITY = 80.freeze
-
-  def sell_in=(sell_in)
-    raise ArgumentError 'sell in date for legendary items is not allowed'
-  end
-  
-  def quality
-    MAX_QUALITY # quality of legendary items must never change
-  end
-end
-```
-
-
 ## Gilded Rose Requirements Specification
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a

@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'application_action')
+
 class NormalUpdateSellInAction < ApplicationAction
   promises :sell_in
 

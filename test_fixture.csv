@@ -1,0 +1,10 @@
+name,sell_in,quality,expected_sell_in,expected_quality
++5 Dexterity Vest,10,20,8,18
+Aged Brie,2,0,0,2
+Elixir of the Mongoose,5,7,3,5
+"Sulfuras, Hand of Ragnaros",0,80,0,80
+"Sulfuras, Hand of Ragnaros",-1,80,-1,80
+Backstage passes to a TAFKAL80ETC concert,15,20,13,18
+Backstage passes to a TAFKAL80ETC concert,10,49,8,45
+Backstage passes to a TAFKAL80ETC concert,5,49,2,43
+Conjured Mana Cake,3,6,1,2
